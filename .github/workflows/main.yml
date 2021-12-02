@@ -80,7 +80,7 @@ jobs:
     needs: [ vars, build-and-push-image ]
     services:
       apache:
-        image: ${{ needs.vars.outputs.github_image }}/apache/prod:${{ needs.vars.outputs.app_tag }}
+        image: ${{ needs.vars.outputs.github_image }}/php-7.1:${{ needs.vars.outputs.app_tag }}
         credentials:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
@@ -101,12 +101,7 @@ jobs:
 
   create-release:
     if:
-      contains('
-      refs/heads/master
-      refs/heads/iac
-      ', github.ref)
-      ||
-      startsWith(github.ref, 'refs/heads/feature/')
+      contains('refs/heads/master')
     runs-on: ubuntu-latest
     permissions:
       contents: write
