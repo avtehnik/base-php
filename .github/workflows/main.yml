@@ -101,7 +101,7 @@ jobs:
 
   create-release:
     if:
-      contains('refs/heads/master')
+      contains('refs/heads/master', github.ref)
     runs-on: ubuntu-latest
     permissions:
       contents: write
