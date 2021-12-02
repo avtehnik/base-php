@@ -73,27 +73,27 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
-  test-apache:
-    runs-on: ubuntu-latest
-    permissions:
-      packages: read
-    needs: [ vars, build-and-push-image ]
-    services:
-      apache:
-        image: ${{ needs.vars.outputs.github_image }}/php-7.1:${{ needs.vars.outputs.app_tag }}
-        credentials:
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-        ports:
-          - 8080:80
-    steps:
-      - name: Ping Apache
-        run: |
-          curl -fsS http://127.0.0.1:8080/
+#  test-apache:
+#    runs-on: ubuntu-latest
+#    permissions:
+#      packages: read
+#    needs: [ vars, build-and-push-image ]
+#    services:
+#      apache:
+#        image: ${{ needs.vars.outputs.github_image }}/php-7.1:${{ needs.vars.outputs.app_tag }}
+#        credentials:
+#          username: ${{ github.actor }}
+#          password: ${{ secrets.GITHUB_TOKEN }}
+#        ports:
+#          - 8080:80
+#    steps:
+#      - name: Ping Apache
+#        run: |
+#          curl -fsS http://127.0.0.1:8080/
 
   all-tests:
     runs-on: ubuntu-latest
-    needs: [ vars,  test-apache ]
+    needs: [ vars]
     steps:
       - name: Success
         run: |
