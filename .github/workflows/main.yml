@@ -26,7 +26,7 @@ jobs:
         run: |
           REF_SLUG="$(echo "${{ github.ref }}" | cut -d'/' -f3- | sed 's/[^a-z0-9_-]/__/g')"
           APP_TAG="$(echo ${REF_SLUG}-${SHA_SHORT}-${{ github.run_number }} | awk '{print tolower($0)}' )"
-          echo "::set-output name=app_branch::$APP_BRANCH"
+          echo "::set-output name=app_tag::$APP_TAG"
 
   build-and-push-image:
     runs-on: ubuntu-latest
