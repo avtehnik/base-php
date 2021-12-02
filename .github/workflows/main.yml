@@ -24,6 +24,7 @@ jobs:
       - name: Set vars
         id: vars
         run: |
+          SHA_SHORT="$(git rev-parse --short HEAD)"
           REF_SLUG="$(echo "${{ github.ref }}" | cut -d'/' -f3- | sed 's/[^a-z0-9_-]/__/g')"
           APP_TAG="$(echo ${REF_SLUG}-${SHA_SHORT}-${{ github.run_number }} | awk '{print tolower($0)}' )"
           echo "::set-output name=app_tag::$APP_TAG"
