@@ -7,19 +7,6 @@ on:
 
 jobs:
 
-  checks-hadolint:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-    container: hadolint/hadolint:latest-debian
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
-      - name: Check hadolint
-        run: |
-          hadolint --ignore DL3002 Dockerfile
-
   vars:
     runs-on: ubuntu-latest
     permissions:
@@ -46,7 +33,7 @@ jobs:
     permissions:
       contents: read
       packages: write
-    needs: [ vars, checks-hadolint ]
+    needs: [ vars ]
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
