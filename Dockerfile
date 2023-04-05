@@ -15,11 +15,8 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 # https://github.com/mlocati/docker-php-extension-installer
-# Turns out the uopz release broke compat
-# https://github.com/mlocati/docker-php-extension-installer/pull/399
-# Once PR is merged lets install from docker image, https://github.com/mlocati/docker-php-extension-installer#copying-the-script-from-a-docker-image
-# ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
-ADD https://raw.githubusercontent.com/mlocati/docker-php-extension-installer/bd7fcd4795766ed92cfd4062199339a7934eded3/install-php-extensions /usr/local/bin/
+ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
+
 RUN chmod +x /usr/local/bin/install-php-extensions \
     && install-php-extensions \
         sockets \
@@ -34,7 +31,6 @@ RUN chmod +x /usr/local/bin/install-php-extensions \
         soap \
         pdo_mysql \
         mysqli \
-        xdebug \
         zip \
         calendar
 
