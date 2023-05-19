@@ -17,6 +17,8 @@ RUN apt-get update \
 # https://github.com/mlocati/docker-php-extension-installer
 ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
 
+RUN curl -LO https://phar.phpunit.de/phpunit-9.6.phar && php phpunit-9.6.phar --version
+
 RUN chmod +x /usr/local/bin/install-php-extensions \
     && install-php-extensions \
         sockets \
