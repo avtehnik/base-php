@@ -1,6 +1,6 @@
 FROM composer:2 as composer
 
-FROM php:7.4-apache as php
+FROM php:8.1-apache as php
 
 # hadolint ignore=DL3008
 RUN apt-get update \
